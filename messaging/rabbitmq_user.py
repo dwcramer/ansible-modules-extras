@@ -178,6 +178,8 @@ class RabbitMqUser(object):
 
         perms_list = list()
         for perm in perms_out:
+            if '\t' not in perm:
+                continue
             vhost, configure_priv, write_priv, read_priv = perm.split('\t')
             if not self.bulk_permissions:
                 if vhost == self.permissions[0]['vhost']:
